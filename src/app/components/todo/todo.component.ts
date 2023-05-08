@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Todo } from 'src/app/model/todo';
 
 @Component({
   selector: 'app-todo',
@@ -6,5 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent {
-  @Input() todoTitle = '';
+
+  @Input() todo: Todo | undefined;
 }

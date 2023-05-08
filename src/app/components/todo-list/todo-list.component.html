@@ -1,4 +1,7 @@
-<ul>
-    <!-- passiamo la lista stringhe dichiarata nel component -->
+<!-- <ul>
+    <!- passiamo la lista stringhe dichiarata nel component
     <li *ngFor="let item of todoArray">{{item}}</li>
-</ul>
+</ul> -->
+
+<button (click)="sortTodo()">Ordina</button>
+<app-todo *ngFor="let item of todoArray" [todo]="item"></app-todo>
