@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ITodo } from 'src/app/model/i-todo';
 import { Todo } from 'src/app/model/todo';
+import { DataService } from 'src/app/services/data/data.service';
 import { UtilityService } from 'src/app/services/utility/utility.service';
 
 @Component({
@@ -8,11 +10,11 @@ import { UtilityService } from 'src/app/services/utility/utility.service';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent {
- todoArray: Todo[] = []; // string[] = lista di stringhe
+ todoArray: ITodo[] = []; // string[] = lista di stringhe
 
 //  library: Library | undefined;
 
- constructor(private utilityService: UtilityService){
+ constructor(private utilityService: UtilityService, private dataS: DataService){
   // const book1 = new Book('iliade', 'omero', 200);
   // const book2 = new Book('odissea', 'omero', 210);
   // const book3 = new Book('divina commedia', 'dante', 1200);
@@ -21,11 +23,17 @@ export class TodoListComponent {
   // const newLibrary = new Library(books);
   // this.library = newLibrary;
 
-  const todo1 = new Todo('comprare la spazzatura', false);
-  const todo2 = new Todo('buttare la nonna', false);
-  const todo3 = new Todo('chiamare il pane', false);
+  // const todo1 = new Todo('comprare la spazzatura', false);
+  // const todo2 = new Todo('buttare la nonna', false);
+  // const todo3 = new Todo('chiamare il pane', false);
 
-  this.todoArray = [todo1, todo2, todo3]
+  // this.todoArray = [todo1, todo2, todo3]
+
+  this.dataS.getData().then(data => {
+    console.log(data);
+    this.todoArray = data;
+    console.log(this.todoArray);
+  } )
 }
 //  sortArrayByAlphabet(array: string[]): string[]{ // le funzioni che non ci servono nell'interface le spostiamo nei service o nei model, console ng g s utility per creare
 //    const newArray = [...array]
@@ -41,8 +49,6 @@ export class TodoListComponent {
  sortTodo():void{
   this.todoArray = this.utilityService.sortArrayByAlphabet(this.todoArray);
  }
-
-
 
 }
 
